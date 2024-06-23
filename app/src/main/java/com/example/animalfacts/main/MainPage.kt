@@ -26,8 +26,8 @@ fun MainPage(modifier: Modifier = Modifier) {
 fun MainView(modifier: Modifier = Modifier, estado: MainEstado, ejecutar: (MainIntencion) -> Unit){
     Column(modifier = modifier.padding(20.dp)) {
         when (estado) {
-            is MainEstado.Correcto -> MainViewCorrecto()
-            is MainEstado.Error -> MainViewError()
+            is MainEstado.Correcto -> MainViewCorrecto(estado)
+            is MainEstado.Error -> MainViewError(estado)
             is MainEstado.Cargando -> MainViewCargando()
 
         }
@@ -48,9 +48,9 @@ fun MainView(modifier: Modifier = Modifier, estado: MainEstado, ejecutar: (MainI
 }
 
 @Composable
-fun MainViewCorrecto(){
-    Text(text = "Correcto",
-        style = MaterialTheme.typography.titleLarge
+fun MainViewCorrecto(estado : MainEstado.Correcto){
+    Text(text = estado.mensaje,
+        style = MaterialTheme.typography.labelMedium
     )
 
 }
@@ -61,8 +61,10 @@ fun MainViewCargando(){
 }
 
 @Composable
-fun MainViewError(){
-    Text(text = "Error")
+fun MainViewError(estado : MainEstado.Error){
+    Text(text = estado.error,
+    style = MaterialTheme.typography.displayLarge
+        )
 }
 
 
@@ -70,6 +72,6 @@ fun MainViewError(){
 @Composable
 fun MainPreview() {
     AnimalFactsTheme {
-        MainView(estado = MainEstado.Correcto){}
+        MainView(estado = MainEstado.Correcto("Correcto")){}
     }
 }
