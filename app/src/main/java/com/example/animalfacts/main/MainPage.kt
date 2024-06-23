@@ -3,6 +3,7 @@ package com.example.animalfacts.main
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -48,7 +49,10 @@ fun MainView(modifier: Modifier = Modifier, estado: MainEstado, ejecutar: (MainI
 
 @Composable
 fun MainViewCorrecto(){
-    Text(text = "Correcto")
+    Text(text = "Correcto",
+        style = MaterialTheme.typography.titleLarge
+    )
+
 }
 
 @Composable
